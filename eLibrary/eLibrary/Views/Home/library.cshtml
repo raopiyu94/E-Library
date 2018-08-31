@@ -1,0 +1,58 @@
+﻿@model eLibrary.Models.Book
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Library</title>
+</head>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/e-library.js"></script>
+<script language="javascript">
+
+    var app = angular.module("myApp", []); // creating a APP
+
+    app.controller('ELibraryViewModel', ELibraryViewModel); // Registering the VM
+    // Controller
+</script>
+<body ng-app="myApp">
+    <div>
+        <h1>Welcome to Piyush's Library!</h1>
+    </div>
+    <div>
+        <div ng-controller="ELibraryViewModel">
+            <form id="frm1">
+                <b>Book Name :  </b><input type="text" ng-model="Book.bookName" id="bookname" name="Book.bookName" placeholder="Book's Name" /><br><br>
+                <b>Book Genre :  </b><input type="text" ng-model="Book.bookGenre" id="bookgenre" name="Book.bookGenre" placeholder="Genre" /><br><br>
+                <b>Book Cost :  </b><input type="text" ng-model="Book.bookCost" id="bookcost" name="Book.bookCost" placeholder="Cost" /><br><br>
+            </form>
+            <input id="Btn" type="button" value="Add Book" ng-click="Add()" />
+            <input id="Btn" type="button" value="Update Book" ng-click="Update()" />
+            <input id="Btn" type="button" value="Delete Book" ng-click="Delete()" />
+            <br />
+            <br />
+            <table id="tbl">
+                <tr>
+                    <td>Book Name</td>
+                    <td>Book Genre</td>
+                    <td>Book Cost</td>
+                </tr>
+                <!-- ng-repeat is used to loop through a collection -->
+                <tr ng-repeat="book in Books">
+                    <td>{{book.bookName}}</td>
+                    <td>{{book.bookGenre}}</td>
+                    <td>{{book.bookCost}}</td>
+                    <td><a ng-click="LoadByGenre(book.bookGenre)" href="#">Select</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
